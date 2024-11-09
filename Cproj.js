@@ -16,11 +16,12 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 let templateOutput =
   "Hi Gemini, I'm studying C programming. Please give me a project idea focused specifically on C programming that is slightly harder than the last one I did. Include a description, what I'll improve with it, example output, and keep it under 100 words.";
 let initialPrompt =
-  "Hi Gemini, I'm starting with C programming. Please give me the easiest project possible,like, a program that prints hello world for example for basic usage of the c language using printf, including a description, what I'll improve, and an example output, without providing the code. Keep it under 100 words.";
+  "Hi Gemini, I'm starting with C programming. Project Idea: Write a program that prints Hello, World! to the console. Description: Helps you understand the basic structure of a C program, including the use of the main function and printf for output. Improvement: Develops understanding of program structure and basic output. Example Output: Hello, World! give me a project as easy as that";
+
 let tooEasy =
   "The last project was too easy. Please give me a slightly harder C programming project idea, again focused on C, last project for context: ";
 let tooHard =
-  "The last project was too hard. Please give me a slightly easier C programming project idea, again focused on C.";
+  "The last project was too hard. Please give me a slightly easier C programming project idea, again focused on C. Previous project for reference: ";
 
 //get the previous output
 async function getPreviousOutput() {
@@ -92,4 +93,47 @@ async function run() {
   }
   askr();
 }
+//useless shit that might be useful later
+/*const prompt = `${templateOutput}. Previous output: ${previousOutput}`;
+
+  
+
+  try {
+    async function start() {
+      const result = await chat.sendMessage(prompt);
+      const response = await result.response;
+      const text = await response.text;
+      console.log(text);
+    }
+    start();
+
+    rl.question(
+      "Was it too hard?\n1. easy\n2. medium\n3. hard\n",
+      async (answer) => {
+        if (answer === "1") {
+          const result1 = await chat.sendMessage(tooEasy);
+          const response1 = await result1.response;
+          const text1 = await response1.text();
+          console.log(text1);
+          await saveOutput(text1);
+          start();
+        } else if (answer == "2") {
+          console.log("Thats great, see you tomorrow");
+          rl.close();
+        } else if (answer === "3") {
+          let text = await generateWithRetry(tooHard);
+          console.log(text);
+          await saveOutput(text);
+          run();
+        } else {
+          console.log("Thank you for your feedback!");
+          rl.close();
+        }
+      },
+    );
+  } catch (error) {
+    console.error("Error generating content:", error);
+    rl.close();
+  }
+}*/
 run();
