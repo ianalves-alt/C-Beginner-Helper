@@ -26,8 +26,7 @@ You will need the following tools installed:
 
 1. **Clone the repository**:
    ```bash
-   git clone <repository-url>
-   cd <repository-name>
+   git clone https://github.com/ianalves-alt/C-Beginner-Helper.git
 
 2. **Instal dependencies**:
    ```bash
